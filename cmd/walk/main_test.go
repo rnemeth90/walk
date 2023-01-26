@@ -45,6 +45,9 @@ func TestRun(t *testing.T) {
 		expected string
 	}{
 		{testName: "NoFilter", root: "testdata", cfg: config{extension: "", size: 0, list: true}, expected: "testdata/dir.log\ntestdata/dir2/script.sh\n"},
+		{testName: "FilterExtension", root: "testdata", cfg: config{extension: ".log", size: 0, list: true}, expected: "testdata/dir.log\n"},
+		{testName: "FilterSize", root: "testdata", cfg: config{extension: "", size: 12, list: true}, expected: "testdata/dir.log\n"},
+		{testName: "FilterSizeAndExtension", root: "testdata", cfg: config{extension: ".log", size: 12, list: true}, expected: "testdata/dir.log\n"},
 	}
 
 	for _, tc := range testCases {
@@ -63,3 +66,4 @@ func TestRun(t *testing.T) {
 		})
 	}
 }
+
